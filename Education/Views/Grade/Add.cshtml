@@ -1,0 +1,17 @@
+﻿@using Education.ViewModel;
+@{
+    ViewData["Title"] = "Add";
+    @model Grade;
+}
+
+<form asp-action="Add" method="post">
+
+    <partial name="_AddGradePartial"  for="@Model" />
+    <div class="form-group">
+        <input type="submit" value="Add" class="btn btn-primary" />
+        <button class="btn btn-primary"><a style="color:white;text-decoration:none" asp-action="GetAll">Back To Grades</a> </button>
+    </div>
+</form>
+
+
+<partial name="_ValidationScriptsPartial" />

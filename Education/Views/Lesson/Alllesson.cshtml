@@ -1,0 +1,89 @@
+﻿@model List<Education.ViewModel.Lesson_infoViewModel>
+@{
+    ViewData["Title"] = "Alllesson";
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/alertify.min.js" integrity="sha512-JnjG+Wt53GspUQXQhc+c4j8SBERsgJAoHeehagKHlxQN+MtCCmFDghX9/AcbkkNRZptyZU4zC8utK59M5L45Iw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/alertify.min.css" integrity="sha512-IXuoq1aFd2wXs4NqGskwX2Vb+I8UJ+tGJEu/Dc0zwLNKeQ7CW3Sr6v0yU3z5OQWe3eScVIkER4J9L7byrgR/fA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @if (TempData["NoData"] != null)
+    {
+        <script type="text/javascript">
+            alertify.alert('There is no material on this date!', null, 'Education');
+        </script>
+    }
+}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card rounded ">
+                    <div class="card-body">
+                        <p class="card-title">All Lessons </p>
+                        <!--Search Date-->
+                        <div class="row d-flex justify-content-center align-items-center ">
+                            <form asp-action="Search_alllesson" class="col-lg-5 col-md-12  d-flex justify-content-center align-items-center  ">
+                                    <input type="date" id="date" name="date" class="form-control  rounded-pill " required>
+                                <button type="submit" class="btn btn-primary mb-3 m-2">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                        </form>
+
+                            <!--Admin-->
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <form  asp-action="Addlesson">
+                                    <button class=" btn btn-primary mb-3 m-2 mr-3 " type="submit">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                </form>
+                                  
+                                  
+                               
+                            }
+                        </div>
+                        <!--End Search Date-->
+                        <div class="row mt-3">
+                            <div class="col-md-12 ">
+                                <table class=" table m-auto table-bordered table-hover " role="grid">
+                                    <thead class="bg-primary text-light text-center">
+                                        <tr role="row ">
+                                            <th>Number</th>
+                                            <th>Topic</th>
+                                            <th>Type</th>
+                                            <th>Instructor</th>
+                                            <th>Date</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td class=" select-checkbox">@item.Number</td>
+                                                <td>@item.Name</td>
+                                                <td>@item.Type</td>
+                                                <td>@item.InstructorName</td>
+                                                <td>@item.Date</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts 
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/alertify.min.js" integrity="sha512-JnjG+Wt53GspUQXQhc+c4j8SBERsgJAoHeehagKHlxQN+MtCCmFDghX9/AcbkkNRZptyZU4zC8utK59M5L45Iw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/alertify.min.css" integrity="sha512-IXuoq1aFd2wXs4NqGskwX2Vb+I8UJ+tGJEu/Dc0zwLNKeQ7CW3Sr6v0yU3z5OQWe3eScVIkER4J9L7byrgR/fA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+}

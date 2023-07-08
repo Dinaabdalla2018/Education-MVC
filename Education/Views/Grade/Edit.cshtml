@@ -1,0 +1,12 @@
+﻿@model Grade
+@{
+}
+<form asp-action="Edit" method="post">
+
+    <partial name="_AddGradePartial" for="@Model" />
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>
+
+<partial name="_ValidationScriptsPartial" />
